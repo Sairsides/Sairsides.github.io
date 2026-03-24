@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  issuer: string;
+  published: string;
+  validity: string;
+  url: string;
+}
+const { title, issuer, published, validity, url } = Astro.props;
+---
+<a class="card cert-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open certificate ${title}`}>
+  <p class="pill">New</p>
+  <h3>{title}</h3>
+  <p class="issuer">{issuer}</p>
+  <ul>
+    <li><strong>Published:</strong> {published}</li>
+    <li><strong>Validity:</strong> {validity}</li>
+  </ul>
+</a>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  url: string;
+  subtext?: string;
+}
+const { label, url, subtext } = Astro.props;
+---
+<a class="card link-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${label}`}>
+  <div>
+    <h3>{label}</h3>
+    {subtext && <p>{subtext}</p>}
+  </div>
+  <span aria-hidden="true">↗</span>
+</a>

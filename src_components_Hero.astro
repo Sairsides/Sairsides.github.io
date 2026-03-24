@@ -1,0 +1,14 @@
+---
+interface Props {
+  name: string;
+  alias: string;
+  bio: string;
+}
+const { name, alias, bio } = Astro.props;
+---
+<header class="hero glass">
+  <p class="kicker">Cybersecurity Portfolio</p>
+  <h1>{name}</h1>
+  <p class="alias">{alias}</p>
+  <p class="bio">{bio}</p>
+</header>

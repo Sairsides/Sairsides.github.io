@@ -1,0 +1,11 @@
+---
+interface Props {
+  label: string;
+  url: string;
+}
+const { label, url } = Astro.props;
+---
+<a class="card badge-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${label}`}>
+  <h3>{label}</h3>
+  <p>View badge</p>
+</a>
