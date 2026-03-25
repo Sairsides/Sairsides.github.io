@@ -1,43 +1,51 @@
-<div class="rive-holder">
-  <canvas class="sec0-rive-canvas" width="220" height="220"></canvas>
+<div class="soc0-wrap" data-soc0-wrap>
+  <canvas class="soc0-canvas" width="200" height="200"></canvas>
 </div>
 
 <script type="module">
-  import Rive from "@rive-app/canvas";
+  import Rive from "@rive-app/webgl2";
 
-  const holders = document.querySelectorAll(".rive-holder");
-  holders.forEach((holder) => {
-    const canvas = holder.querySelector(".sec0-rive-canvas");
+  const wraps = document.querySelectorAll("[data-soc0-wrap]");
+  wraps.forEach((wrap) => {
+    const canvas = wrap.querySelector(".soc0-canvas");
     if (!canvas) return;
 
-    new Rive({
+    // Hide until loaded (prevents empty blank block)
+    wrap.classList.add("is-loading");
+
+    const rive = new Rive({
       src: "https://tryhackme.com/static/assets/sec0-animation.2b47979f.riv",
       canvas,
       autoplay: true,
       onLoad: () => {
-        // ensure proper fit after load
-        try {
-          // @ts-ignore
-          rive.resizeDrawingSurfaceToCanvas?.();
-        } catch {}
+        wrap.classList.remove("is-loading");
+        try { rive.resizeDrawingSurfaceToCanvas(); } catch {}
+      },
+      onLoadError: () => {
+        // If fails, keep hidden so no blank space
+        wrap.style.display = "none";
       }
     });
   });
 </script>
 
 <style>
-  .rive-holder{
-    width:220px;
-    height:220px;
-    margin:0 auto;
+  .soc0-wrap{
+    width:200px;
+    height:200px;
+    margin:0 auto 8px;
     display:flex;
     align-items:center;
     justify-content:center;
   }
-
-  .sec0-rive-canvas{
-    width:220px;
-    height:220px;
+  .soc0-wrap.is-loading{
+    height:0;
+    margin:0;
+    overflow:hidden;
+  }
+  .soc0-canvas{
+    width:200px;
+    height:200px;
     display:block;
   }
 </style>

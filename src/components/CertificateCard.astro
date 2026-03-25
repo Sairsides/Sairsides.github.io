@@ -22,15 +22,10 @@ const typeLabel =
     <p class={`pill ${type}`}>{typeLabel}</p>
   </div>
 
-  {type === "professional" && (
-    <div class="rive-wrap">
-      <SOC0Rive />
-    </div>
-  )}
+  {type === "professional" && <SOC0Rive />}
 
   <h3>{title}</h3>
   <p class="issuer">{issuer}</p>
-
   <ul>
     <li><strong>Issued:</strong> {issued}</li>
     <li><strong>Validity:</strong> {validity}</li>
@@ -38,58 +33,11 @@ const typeLabel =
 </a>
 
 <style>
-  .cert-card{
-    display:block;
-    text-decoration:none;
-    color:inherit;
-  }
-
-  .cert-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:.6rem;
-    margin-bottom:.55rem;
-  }
-
-  .pill{
-    display:inline-block;
-    font-size:.74rem;
-    padding:.2rem .55rem;
-    border-radius:999px;
-    font-weight:700;
-  }
-
-  .pill.professional{
-    background:#f5aa2f;
-    color:#221600;
-  }
-
-  .pill.event,.pill.path{
-    background:#364055;
-    color:#e7ecff;
-  }
-
-  .rive-wrap{
-    display:flex;
-    justify-content:center;
-    margin:.4rem 0 .75rem;
-    padding:.25rem 0;
-  }
-
-  .issuer{
-    opacity:.9;
-    margin:.2rem 0 .55rem;
-  }
-
-  ul{
-    margin:.35rem 0 0 1rem;
-    padding:0;
-  }
+  .cert-card{display:block;text-decoration:none;color:inherit}
+  .cert-top{display:flex;align-items:center;margin-bottom:.4rem}
+  .pill{display:inline-block;font-size:.74rem;padding:.2rem .55rem;border-radius:999px;font-weight:700}
+  .pill.professional{background:#f5aa2f;color:#221600}
+  .pill.event,.pill.path{background:#364055;color:#e7ecff}
+  .issuer{opacity:.9;margin:.2rem 0 .55rem}
+  ul{margin:.35rem 0 0 1rem;padding:0}
 </style>
-
-{type === "professional" && (
-  <div class="rive-wrap">
-    <SOC0Rive />
-  </div>
-)}
