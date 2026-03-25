@@ -1,4 +1,6 @@
 ---
+import SOC0Rive from "./SOC0Rive.astro";
+
 type CertType = "professional" | "event" | "path";
 interface Props {
   title: string;
@@ -18,11 +20,17 @@ const typeLabel =
 <a class="card cert-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open certificate ${title}`}>
   <div class="cert-top">
     <p class={`pill ${type}`}>{typeLabel}</p>
-    {type === "professional" && <div class="soc0-orb" aria-hidden="true"></div>}
   </div>
+
+  {type === "professional" && (
+    <div class="rive-wrap">
+      <SOC0Rive />
+    </div>
+  )}
 
   <h3>{title}</h3>
   <p class="issuer">{issuer}</p>
+
   <ul>
     <li><strong>Issued:</strong> {issued}</li>
     <li><strong>Validity:</strong> {validity}</li>
@@ -30,19 +38,52 @@ const typeLabel =
 </a>
 
 <style>
-  .cert-top{display:flex;justify-content:space-between;align-items:center;gap:.6rem}
-  .pill{display:inline-block;font-size:.74rem;padding:.2rem .55rem;border-radius:999px;font-weight:700}
-  .pill.professional{background:#f5aa2f;color:#221600}
-  .pill.event,.pill.path{background:#364055;color:#e7ecff}
-
-  .soc0-orb{
-    width:28px;height:28px;border-radius:999px;
-    background: radial-gradient(circle at 30% 30%, #ffd580, #cc8c1f 60%, #6b4409);
-    box-shadow: 0 0 0 0 rgba(255,190,90,.5);
-    transition: transform .25s ease, box-shadow .25s ease;
+  .cert-card{
+    display:block;
+    text-decoration:none;
+    color:inherit;
   }
-  .cert-card:hover .soc0-orb{
-    transform: translateY(-1px) scale(1.08);
-    box-shadow: 0 0 0 8px rgba(255,190,90,.14), 0 0 22px rgba(255,190,90,.35);
+
+  .cert-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:.6rem;
+    margin-bottom:.55rem;
+  }
+
+  .pill{
+    display:inline-block;
+    font-size:.74rem;
+    padding:.2rem .55rem;
+    border-radius:999px;
+    font-weight:700;
+  }
+
+  .pill.professional{
+    background:#f5aa2f;
+    color:#221600;
+  }
+
+  .pill.event,.pill.path{
+    background:#364055;
+    color:#e7ecff;
+  }
+
+  .rive-wrap{
+    display:flex;
+    justify-content:center;
+    margin:.4rem 0 .75rem;
+    padding:.25rem 0;
+  }
+
+  .issuer{
+    opacity:.9;
+    margin:.2rem 0 .55rem;
+  }
+
+  ul{
+    margin:.35rem 0 0 1rem;
+    padding:0;
   }
 </style>

@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@rive-app/canvas": "^2.35.4",
     "astro": "^6.0.8"
   }
 }
