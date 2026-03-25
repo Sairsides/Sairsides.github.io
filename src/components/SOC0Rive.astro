@@ -3,7 +3,7 @@
 
   <img
     class="badge"
-    src="https://tryhackme.com/static/image/badge.c034b75f.png"
+    src="https://dragkob.com/MainWeb/images/certifications/SEC0.webp"
     alt="SEC0 badge"
     loading="lazy"
   />
@@ -30,19 +30,16 @@
     width:170px;height:170px;border-radius:999px;
     background: radial-gradient(circle, rgba(var(--accent),.32) 0%, rgba(var(--accent),.09) 55%, rgba(var(--accent),0) 75%);
     filter: blur(2px);
-    transform: scale(.94);
-    opacity:.85;
-    transition: transform .35s ease, opacity .35s ease;
+    animation: glowPulse 2.4s ease-in-out infinite;
   }
 
   .badge{
     position: relative;
     z-index: 2;
-    width: 130px;
+    width: 132px;
     height: auto;
     filter: drop-shadow(0 0 12px rgba(var(--accent),.38));
-    transform: translateY(0) scale(1);
-    transition: transform .35s ease, filter .35s ease;
+    animation: floatY 2.8s ease-in-out infinite;
   }
 
   .rings{
@@ -58,40 +55,32 @@
     inset:0;
     border:2px solid rgba(var(--accent),.42);
     border-radius:50%;
-    transform: scale(.75);
-    opacity:.55;
-    transition: transform .35s ease, opacity .35s ease;
-  }
-  .rings span:nth-child(2){ transform: scale(.56); opacity:.45; }
-  .rings span:nth-child(3){ transform: scale(.40); opacity:.35; }
-
-  /* animate only when parent certificate is hovered */
-  .cert-card:hover .badge{
-    animation: floatY 2.4s ease-in-out infinite;
-    transform: translateY(-2px) scale(1.04);
-    filter: drop-shadow(0 0 20px rgba(var(--accent),.55));
-  }
-  .cert-card:hover .glow{
-    animation: glowPulse 2s ease-in-out infinite;
-    transform: scale(1.05);
-    opacity:1;
-  }
-  .cert-card:hover .rings span{
     animation: ripple 2.4s linear infinite;
   }
-  .cert-card:hover .rings span:nth-child(2){ animation-delay:.8s; }
-  .cert-card:hover .rings span:nth-child(3){ animation-delay:1.6s; }
+  .rings span:nth-child(2){ animation-delay:.8s; }
+  .rings span:nth-child(3){ animation-delay:1.6s; }
+
+  /* stronger effect on hover */
+  .cert-card:hover .badge{
+    filter: drop-shadow(0 0 20px rgba(var(--accent),.6));
+    transform: scale(1.06);
+  }
+  .cert-card:hover .glow{
+    opacity: 1;
+  }
 
   @keyframes floatY{
-    0%,100%{ transform: translateY(0) scale(1.04); }
-    50%{ transform: translateY(-10px) scale(1.07); }
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-10px); }
   }
+
   @keyframes glowPulse{
-    0%,100%{ transform: scale(.96); opacity:.85; }
-    50%{ transform: scale(1.12); opacity:1; }
+    0%,100%{ transform: scale(.95); opacity:.75; }
+    50%{ transform: scale(1.10); opacity:1; }
   }
+
   @keyframes ripple{
-    0%{ transform: scale(.45); opacity:.8; }
+    0%{ transform: scale(.45); opacity:.82; }
     100%{ transform: scale(1.2); opacity:0; }
   }
 </style>
