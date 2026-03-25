@@ -6,9 +6,22 @@ export const profile = {
   bio: "I’m Sair (SairSides), a beginner cybersecurity specialist and aspiring pentester/security engineer focused on ethical hacking labs, defensive security fundamentals, and continuous hands-on learning.",
 
   socials: [
-    { label: "TryHackMe", url: "https://tryhackme.com/p/Saihacke" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/kurshad-yusifbayli-1b7bb73b5/" },
-    { label: "Discord", url: "https://discord.com/users/928567350263963678", subtext: "@sairsides" }
+  {
+    label: "TryHackMe",
+    url: "https://tryhackme.com/p/Saihacke",
+    icon: "https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg"
+  },
+  {
+    label: "LinkedIn",
+    url: "https://www.linkedin.com/in/kurshad-yusifbayli-1b7bb73b5/",
+    icon: "/icons/linkedin.svg"
+  },
+  {
+    label: "Discord",
+    url: "https://discord.com/users/928567350263963678",
+    subtext: "@sairsides",
+    icon: "/icons/discord.svg"
+  }
   ],
 
   certificates: [

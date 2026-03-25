@@ -3,13 +3,30 @@ interface Props {
   label: string;
   url: string;
   subtext?: string;
+  icon?: string;
 }
-const { label, url, subtext } = Astro.props;
+const { label, url, subtext, icon } = Astro.props;
 ---
-<a class="card link-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${label}`}>
-  <div>
-    <h3>{label}</h3>
-    {subtext && <p>{subtext}</p>}
+<a class="card social-card" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${label}`}>
+  <div class="left">
+    {icon && <img src={icon} alt={`${label} icon`} loading="lazy" />}
+    <div>
+      <h3>{label}</h3>
+      {subtext && <p>{subtext}</p>}
+    </div>
   </div>
   <span aria-hidden="true">↗</span>
 </a>
+
+<style>
+  .social-card .left{display:flex;align-items:center;gap:12px}
+  .social-card img{
+    width:36px;height:36px;object-fit:contain;border-radius:8px;
+    background:rgba(255,255,255,.06);padding:4px;
+    transition:transform .25s ease, filter .25s ease;
+  }
+  .social-card:hover img{
+    transform:scale(1.07) rotate(-2deg);
+    filter:drop-shadow(0 0 10px rgba(217,58,88,.35));
+  }
+</style>
