@@ -22,22 +22,70 @@ const typeLabel =
     <p class={`pill ${type}`}>{typeLabel}</p>
   </div>
 
-  {type === "professional" && <SOC0Rive />}
+  {type === "professional" ? (
+    <div class="pro-layout">
+      <div class="left-anim">
+        <SOC0Rive />
+      </div>
 
-  <h3>{title}</h3>
-  <p class="issuer">{issuer}</p>
-  <ul>
-    <li><strong>Issued:</strong> {issued}</li>
-    <li><strong>Validity:</strong> {validity}</li>
-  </ul>
+      <div class="right-content">
+        <h3>{title}</h3>
+        <p class="issuer">{issuer}</p>
+        <ul>
+          <li><strong>Issued:</strong> {issued}</li>
+          <li><strong>Validity:</strong> {validity}</li>
+        </ul>
+      </div>
+    </div>
+  ) : (
+    <div class="normal-content">
+      <h3>{title}</h3>
+      <p class="issuer">{issuer}</p>
+      <ul>
+        <li><strong>Issued:</strong> {issued}</li>
+        <li><strong>Validity:</strong> {validity}</li>
+      </ul>
+    </div>
+  )}
 </a>
 
 <style>
   .cert-card{display:block;text-decoration:none;color:inherit}
-  .cert-top{display:flex;align-items:center;margin-bottom:.4rem}
+  .cert-top{display:flex;align-items:center;margin-bottom:.45rem}
   .pill{display:inline-block;font-size:.74rem;padding:.2rem .55rem;border-radius:999px;font-weight:700}
   .pill.professional{background:#f5aa2f;color:#221600}
   .pill.event,.pill.path{background:#364055;color:#e7ecff}
-  .issuer{opacity:.9;margin:.2rem 0 .55rem}
+
+  .pro-layout{
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap: 16px;
+    align-items:center;
+  }
+
+  .left-anim{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    min-height:220px;
+  }
+
+  .right-content h3,
+  .normal-content h3{
+    margin:0;
+  }
+
+  .issuer{opacity:.9;margin:.25rem 0 .55rem}
   ul{margin:.35rem 0 0 1rem;padding:0}
+
+  @media (max-width: 900px){
+    .pro-layout{
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .left-anim{
+      justify-content:center;
+      min-height:auto;
+    }
+  }
 </style>
