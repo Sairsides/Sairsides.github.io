@@ -17,7 +17,9 @@ import { profile } from "../data/profile";
   </Section>
 
   <Section id="certifications" title="Certifications">
-    <CertificateCard {...profile.certificate} />
+    <div class="grid">
+      {profile.certificates.map((c) => <CertificateCard {...c} />)}
+    </div>
   </Section>
 
   <Section id="badges" title="Badges">
