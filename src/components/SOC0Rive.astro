@@ -15,63 +15,83 @@
 
 <style>
   .sec0-scene{
+    --accent: 154,255,68;
     position: relative;
-    width: 210px;
-    height: 190px;
-    margin: 0 auto 8px;
+    width: 300px;
+    height: 230px;
+    margin: 0 auto 12px;
     display: grid;
     place-items: center;
   }
 
   .glow{
     position:absolute;
-    top:42px;
-    width:120px;height:120px;border-radius:999px;
-    background: radial-gradient(circle, rgba(154,255,68,.32) 0%, rgba(154,255,68,.08) 55%, rgba(154,255,68,0) 75%);
+    top:34px;
+    width:170px;height:170px;border-radius:999px;
+    background: radial-gradient(circle, rgba(var(--accent),.32) 0%, rgba(var(--accent),.09) 55%, rgba(var(--accent),0) 75%);
     filter: blur(2px);
-    animation: glowPulse 2.2s ease-in-out infinite;
+    transform: scale(.94);
+    opacity:.85;
+    transition: transform .35s ease, opacity .35s ease;
   }
 
   .badge{
     position: relative;
     z-index: 2;
-    width: 92px;
+    width: 130px;
     height: auto;
-    image-rendering: auto;
-    filter: drop-shadow(0 0 10px rgba(154,255,68,.35));
-    animation: floatY 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(var(--accent),.38));
+    transform: translateY(0) scale(1);
+    transition: transform .35s ease, filter .35s ease;
   }
 
   .rings{
     position:absolute;
     bottom:8px;
-    width:150px;
-    height:36px;
+    width:220px;
+    height:52px;
     z-index:1;
   }
 
   .rings span{
     position:absolute;
     inset:0;
-    border:2px solid rgba(154,255,68,.42);
+    border:2px solid rgba(var(--accent),.42);
     border-radius:50%;
+    transform: scale(.75);
+    opacity:.55;
+    transition: transform .35s ease, opacity .35s ease;
+  }
+  .rings span:nth-child(2){ transform: scale(.56); opacity:.45; }
+  .rings span:nth-child(3){ transform: scale(.40); opacity:.35; }
+
+  /* animate only when parent certificate is hovered */
+  .cert-card:hover .badge{
+    animation: floatY 2.4s ease-in-out infinite;
+    transform: translateY(-2px) scale(1.04);
+    filter: drop-shadow(0 0 20px rgba(var(--accent),.55));
+  }
+  .cert-card:hover .glow{
+    animation: glowPulse 2s ease-in-out infinite;
+    transform: scale(1.05);
+    opacity:1;
+  }
+  .cert-card:hover .rings span{
     animation: ripple 2.4s linear infinite;
   }
-  .rings span:nth-child(2){ animation-delay: .8s; }
-  .rings span:nth-child(3){ animation-delay: 1.6s; }
+  .cert-card:hover .rings span:nth-child(2){ animation-delay:.8s; }
+  .cert-card:hover .rings span:nth-child(3){ animation-delay:1.6s; }
 
   @keyframes floatY{
-    0%,100%{ transform: translateY(0); }
-    50%{ transform: translateY(-8px); }
+    0%,100%{ transform: translateY(0) scale(1.04); }
+    50%{ transform: translateY(-10px) scale(1.07); }
   }
-
   @keyframes glowPulse{
-    0%,100%{ transform: scale(.92); opacity:.75; }
-    50%{ transform: scale(1.06); opacity:1; }
+    0%,100%{ transform: scale(.96); opacity:.85; }
+    50%{ transform: scale(1.12); opacity:1; }
   }
-
   @keyframes ripple{
-    0%{ transform: scale(.55); opacity:.75; }
+    0%{ transform: scale(.45); opacity:.8; }
     100%{ transform: scale(1.2); opacity:0; }
   }
 </style>
