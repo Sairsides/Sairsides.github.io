@@ -1,14 +1,43 @@
-<canvas id="sec0-rive" width="200" height="200" style="width:200px;height:200px;"></canvas>
+<div class="rive-holder">
+  <canvas class="sec0-rive-canvas" width="220" height="220"></canvas>
+</div>
 
 <script type="module">
   import Rive from "@rive-app/canvas";
 
-  const canvas = document.getElementById("sec0-rive");
-  if (canvas) {
+  const holders = document.querySelectorAll(".rive-holder");
+  holders.forEach((holder) => {
+    const canvas = holder.querySelector(".sec0-rive-canvas");
+    if (!canvas) return;
+
     new Rive({
       src: "https://tryhackme.com/static/assets/sec0-animation.2b47979f.riv",
       canvas,
-      autoplay: true
+      autoplay: true,
+      onLoad: () => {
+        // ensure proper fit after load
+        try {
+          // @ts-ignore
+          rive.resizeDrawingSurfaceToCanvas?.();
+        } catch {}
+      }
     });
-  }
+  });
 </script>
+
+<style>
+  .rive-holder{
+    width:220px;
+    height:220px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .sec0-rive-canvas{
+    width:220px;
+    height:220px;
+    display:block;
+  }
+</style>
