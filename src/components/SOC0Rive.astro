@@ -1,51 +1,77 @@
-<div class="soc0-wrap" data-soc0-wrap>
-  <canvas class="soc0-canvas" width="200" height="200"></canvas>
+<div class="sec0-scene" aria-hidden="true">
+  <div class="glow"></div>
+
+  <img
+    class="badge"
+    src="https://tryhackme.com/static/image/badge.c034b75f.png"
+    alt="SEC0 badge"
+    loading="lazy"
+  />
+
+  <div class="rings">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 
-<script type="module">
-  import Rive from "@rive-app/webgl2";
-
-  const wraps = document.querySelectorAll("[data-soc0-wrap]");
-  wraps.forEach((wrap) => {
-    const canvas = wrap.querySelector(".soc0-canvas");
-    if (!canvas) return;
-
-    // Hide until loaded (prevents empty blank block)
-    wrap.classList.add("is-loading");
-
-    const rive = new Rive({
-      src: "https://tryhackme.com/static/assets/sec0-animation.2b47979f.riv",
-      canvas,
-      autoplay: true,
-      onLoad: () => {
-        wrap.classList.remove("is-loading");
-        try { rive.resizeDrawingSurfaceToCanvas(); } catch {}
-      },
-      onLoadError: () => {
-        // If fails, keep hidden so no blank space
-        wrap.style.display = "none";
-      }
-    });
-  });
-</script>
-
 <style>
-  .soc0-wrap{
-    width:200px;
-    height:200px;
-    margin:0 auto 8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  .sec0-scene{
+    position: relative;
+    width: 210px;
+    height: 190px;
+    margin: 0 auto 8px;
+    display: grid;
+    place-items: center;
   }
-  .soc0-wrap.is-loading{
-    height:0;
-    margin:0;
-    overflow:hidden;
+
+  .glow{
+    position:absolute;
+    top:42px;
+    width:120px;height:120px;border-radius:999px;
+    background: radial-gradient(circle, rgba(154,255,68,.32) 0%, rgba(154,255,68,.08) 55%, rgba(154,255,68,0) 75%);
+    filter: blur(2px);
+    animation: glowPulse 2.2s ease-in-out infinite;
   }
-  .soc0-canvas{
-    width:200px;
-    height:200px;
-    display:block;
+
+  .badge{
+    position: relative;
+    z-index: 2;
+    width: 92px;
+    height: auto;
+    image-rendering: auto;
+    filter: drop-shadow(0 0 10px rgba(154,255,68,.35));
+    animation: floatY 2.8s ease-in-out infinite;
+  }
+
+  .rings{
+    position:absolute;
+    bottom:8px;
+    width:150px;
+    height:36px;
+    z-index:1;
+  }
+
+  .rings span{
+    position:absolute;
+    inset:0;
+    border:2px solid rgba(154,255,68,.42);
+    border-radius:50%;
+    animation: ripple 2.4s linear infinite;
+  }
+  .rings span:nth-child(2){ animation-delay: .8s; }
+  .rings span:nth-child(3){ animation-delay: 1.6s; }
+
+  @keyframes floatY{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-8px); }
+  }
+
+  @keyframes glowPulse{
+    0%,100%{ transform: scale(.92); opacity:.75; }
+    50%{ transform: scale(1.06); opacity:1; }
+  }
+
+  @keyframes ripple{
+    0%{ transform: scale(.55); opacity:.75; }
+    100%{ transform: scale(1.2); opacity:0; }
   }
 </style>
